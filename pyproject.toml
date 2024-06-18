@@ -1,6 +1,6 @@
 [project]
-name = "django-dto-cattrs"
-version = "0.1.0.dev"
+name = "django-dto-attrs"
+version = "0.1.0.dev0"
 description = "High performance DTOs with Django ORM integration and optional validation."
 authors = [
     { name = "Florian Kromer", email = "kromer-florian@protonmail.com" }
@@ -10,7 +10,21 @@ dependencies = [
     "cattrs>=23.2.3",
 ]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.12"
+license = { file = "LICENSE" }
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.12",
+]
+[project.urls]
+Repository = "https://github.com/flango-dev/django-dto-attrs"
+Documentation = "https://github.com/flango-dev/django-dto-attrs/blob/main/README.md"
+Changelog = "https://github.com/flango-dev/django-dto-attrs/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling"]
@@ -27,9 +41,12 @@ dev-dependencies = [
 # https://rye.astral.sh/guide/pyproject/#toolryescripts
 [tool.rye.scripts]
 precommit = { chain = ["lint", "format", "test" ] }
+release = { chain = ["build", "publish"] }
 "lint" = "rye lint --fix"
 "format" = "rye fmt"
 "test" = "rye test"
+"build" = "rye build --clean"
+"publish" = "rye publish"
 
 # https://hatch.pypa.io/latest/config/metadata/#metadata-options
 [tool.hatch.metadata]
@@ -37,7 +54,7 @@ allow-direct-references = true
 
 # https://hatch.pypa.io/latest/config/build/
 [tool.hatch.build.targets.wheel]
-packages = ["src/django_dto_cattrs"]
+packages = ["src/django_dto_attrs"]
 
 # https://docs.astral.sh/ruff/configuration/
 # https://docs.astral.sh/ruff/settings/
